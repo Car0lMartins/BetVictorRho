@@ -18,8 +18,7 @@ const getUrlData = async (lang) => {
         const data = await fetch(url);
         response = await data.json();
       } catch (error) {
-        console.error(`Error while trying to fetch data from ${url}. ${error}`);
-        return;
+        throw new Error(error);
       }
 
       if(response.result) {
@@ -59,11 +58,10 @@ const getCachedData = async (lang) => {
   }
 
   if(!myCache.has(key)) {
-    console.log("not cached")
     try {
       urlData = await getUrlData(lang);
     } catch (error) {
-      console.error(`Error while trying to fetch data from the given url. ${error}`);
+      throw new Error(error);
     }
 
     myCache.set(key, urlData);

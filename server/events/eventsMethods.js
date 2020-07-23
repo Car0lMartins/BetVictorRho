@@ -1,42 +1,51 @@
 const { getCachedData } = require("../data/fetchUrlData");
 
 const getAllEvents = async (lang, sportId) => {
-  const functionName = "getAllEvents";
   let sports;
 
   try {
     sports = await getCachedData(lang);
   } catch (error) {
-    console.error(`[${functionName}] Error while trying to fetch sports. ${error}`);
+    throw new Error(error);
   }
 
   const allEvents = sports.flatMap(sport => sport.comp).flatMap(events => events.events);
 
   if(sportId) {
-    return allEvents.filter(event => {
+    const sportIdExist = allEvents.filter(event => {
       return event.sport_id === parseInt(sportId);
     });
+
+    if(sportIdExist.length === 0) {
+      throw new Error("Sport id does not exist.")
+    }
+
+    return sportIdExist;
   }
   
   return allEvents;
 }
 
 const getEventById = async (lang, eventId) => {
-  const functionName = "getEventById";
   let sports;
 
   try {
     sports = await getCachedData(lang);
   } catch (error) {
-    console.error(`[${functionName}] Error while trying to fetch sports. ${error}`)
+    throw new Error(error);
   }
 
   const allEvents = sports.flatMap(sport => sport.comp).flatMap(events => events.events);
 
-  return allEvents.filter(event => {
+  const eventExist = allEvents.filter(event => {
     return event.id === parseInt(eventId);
   });
 
+  if(eventExist.length === 0) {
+    throw new Error("Event id does not exist.");
+  }
+
+  return eventExist;
 }
 
 module.exports = {

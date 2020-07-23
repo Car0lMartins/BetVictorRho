@@ -4,7 +4,17 @@ const { getAllEvents, getEventById } = require("./events/eventsMethods");
 
 const router = express.Router();
 
-router.get("/sports/:lang", async (req, res) => {
+router.get("/sports/languages/all", async (req, res) => {
+
+  try {
+    const sports = await getAllSports();
+    res.status(200).send({ sports });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.get("/sports/languages/:lang", async (req, res) => {
   const { lang } = req.params;
 
   try {
@@ -12,7 +22,7 @@ router.get("/sports/:lang", async (req, res) => {
 
     res.status(200).send({ sports });
   } catch (error) {
-    console.error(error);
+    res.status(500).send(error);
   }
 });
 
@@ -24,7 +34,7 @@ router.get("/events/:lang", async (req, res) => {
     const events = await getAllEvents(lang, sportId);
     res.status(200).send({ events });
   } catch (error) {
-    console.error(error);
+    res.status(500).send(error);
   }
 });
 
@@ -35,18 +45,7 @@ router.get("/events/:lang/:eventId", async (req, res) => {
     const event = await getEventById(lang, eventId);
     res.status(200).send({ event });
   } catch (error) {
-    console.error(error);
-  }
-});
-
-router.get("/sports/languages/all", async (req, res) => {
-
-  try {
-    const sports = await getAllSports();
-    
-    res.status(200).send({ sports });
-  } catch (error) {
-    console.error(error);
+    res.status(500).send(error);
   }
 });
 
