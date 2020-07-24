@@ -19,7 +19,6 @@ router.get("/sports/languages/:lang", async (req, res) => {
 
   try {
     const sports = await getAllSports(lang);
-
     res.status(200).send({ sports });
   } catch (error) {
     res.status(500).send(error);
