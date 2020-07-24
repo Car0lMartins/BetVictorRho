@@ -2,7 +2,7 @@ const { getCachedData } = require("../data/fetchUrlData");
 const { sortByProperty } = require("../data/sort");
 
 /**
- * This function returns all sports for a given language 
+ * This function lists all sports for a given language 
  * or all languages (if no language is provided), 
  * sorted by property "pos".
  * If the languague is invalid, it returns an error.
@@ -20,6 +20,30 @@ const getAllSports = async (lang) => {
   }
 }
 
+/**
+ * This function lists all sports names for a given language 
+ * or all languages (if no language is provided), 
+ * sorted by property "pos".
+ * If the languague is invalid, it returns an error.
+ * 
+ * @param {string} [lang] - Language code
+ * 
+ */
+const getAllSportsNames = async (lang) => {
+  let sports;
+
+  try {
+    sports = await getAllSports(lang);
+  } catch (error) {
+    throw new Error(error);
+  }
+
+  const sportNames = sports.map(sport => sport.desc);
+
+  return sportNames;
+}
+
 module.exports = {
-  getAllSports
+  getAllSports,
+  getAllSportsNames
 }
