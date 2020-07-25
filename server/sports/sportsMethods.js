@@ -16,7 +16,7 @@ const getAllSports = async (lang) => {
     const sports = await getCachedData(lang);
     return sortByProperty(sports, 'pos');
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
 }
 
