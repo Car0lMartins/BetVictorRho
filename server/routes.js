@@ -11,7 +11,7 @@ router.get("/sports/names", async (req, res) => {
     const sports = await getAllSportsNames(lang);
     res.status(200).send({ sports });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ message: error.message });
   }
 });
 
@@ -21,7 +21,7 @@ router.get("/sports/languages/all", async (req, res) => {
     const sports = await getAllSports();
     res.status(200).send({ sports });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ message: error.message });
   }
 });
 
@@ -32,7 +32,7 @@ router.get("/sports/languages/:lang", async (req, res) => {
     const sports = await getAllSports(lang);
     res.status(200).send({ sports });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ message: error.message });
   }
 });
 
@@ -44,7 +44,7 @@ router.get("/events/names/:lang", async (req, res) => {
     const events = await getEventsNames(lang, sportId);
     res.status(200).send({ events })
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ message: error.message });
   }
 });
 
@@ -56,7 +56,7 @@ router.get("/events/:lang", async (req, res) => {
     const events = await getAllEventsBySport(lang, sportId);
     res.status(200).send({ events });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ message: error.message });
   }
 });
 
@@ -67,7 +67,7 @@ router.get("/events/:lang/:eventId", async (req, res) => {
     const event = await getEventById(lang, eventId);
     res.status(200).send({ event });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ message: error.message });
   }
 });
 

@@ -45,6 +45,7 @@ it("Should return an internal server error if the language is invalid", async ()
     .expect(500);
 
     expect(response.body).not.toHaveProperty("events");
+    expect(response.body).toHaveProperty("message");
 });
 
 it("Should return an internal server error if the sport id is invalid", async () => {
@@ -56,6 +57,7 @@ it("Should return an internal server error if the sport id is invalid", async ()
     .expect(500);
 
     expect(response.body).not.toHaveProperty("events");
+    expect(response.body).toHaveProperty("message");
 });
 
 it("Should list successfully all data for a given event and language", async () => {
@@ -78,6 +80,7 @@ it("Should return an internal server error if the given event id is invalid", as
     .expect(500);
 
     expect(response.body).not.toHaveProperty("events");
+    expect(response.body).toHaveProperty("message");
 });
 
 it("Should return an internal server error if the language is invalid", async () => {
@@ -88,6 +91,7 @@ it("Should return an internal server error if the language is invalid", async ()
     .expect(500);
 
     expect(response.body).not.toHaveProperty("events");
+    expect(response.body).toHaveProperty("message");
 });
 
 it("Should list successfully all events names for a given sportId and language", async () => {
@@ -125,6 +129,7 @@ it("Should return an internal server error if the language is invalid", async ()
     .expect(500);
 
     expect(response.body).not.toHaveProperty("events");
+    expect(response.body).toHaveProperty("message");
 });
 
 it("Should return an internal server error if the sportId is invalid", async () => {
@@ -136,4 +141,5 @@ it("Should return an internal server error if the sportId is invalid", async () 
     .expect(500);
 
     expect(response.body).not.toHaveProperty("events");
+    expect(response.body).toHaveProperty("message");
 });

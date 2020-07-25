@@ -24,6 +24,8 @@ it("Should return an internal server error if the language is invalid", async ()
     .expect(500);
 
   expect(response.body).not.toHaveProperty("sports");
+  expect(response.body).toHaveProperty("message");
+
 });
 
 it("Should list all sports in all languages (en-gb and de-de)", async () => {
@@ -72,4 +74,5 @@ it("Should return an internal server error if the language is invalid", async ()
     .expect(500);
 
   expect(response.body).not.toHaveProperty("sports");
+  expect(response.body).toHaveProperty("message");
 });

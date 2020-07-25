@@ -35,7 +35,7 @@ const getAllSportsNames = async (lang) => {
   try {
     sports = await getAllSports(lang);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
 
   const sportNames = sports.map(sport => sport.desc);

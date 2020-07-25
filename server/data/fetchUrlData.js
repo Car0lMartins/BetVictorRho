@@ -28,7 +28,7 @@ const fetchData = async (url) => {
     const data = await fetch(url);
     return await data.json();
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
 }
 /**
@@ -50,7 +50,7 @@ const getUrlData = async (lang) => {
       try {
         response = await fetchData(url);
       } catch (error) {
-        throw new Error(error);
+        throw new Error(error.message);
       }
       
       if(response.result) {
@@ -65,7 +65,7 @@ const getUrlData = async (lang) => {
       try {
         response = await fetchData(url);
       } catch (error) {
-        throw new Error(error);
+        throw new Error(error.message);
       }
 
       if(response.result) {
@@ -75,7 +75,7 @@ const getUrlData = async (lang) => {
 
     return await Promise.all(res)
           .then( results => {
-            return results.flatMap( sport => { return sport } )
+            return results.flatMap( sport => sport );
           });
 }
 
@@ -101,7 +101,7 @@ const getCachedData = async (lang) => {
     try {
       urlData = await getUrlData(lang);
     } catch (error) {
-      throw new Error(error);
+      throw new Error(error.message);
     }
 
     myCache.set(key, urlData);

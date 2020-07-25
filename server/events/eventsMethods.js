@@ -14,7 +14,7 @@ const getAllEvents = async (lang) => {
   try {
     sports = await getAllSports(lang);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
 
   const allEvents = sports.flatMap(sport => sport.comp)
@@ -40,7 +40,7 @@ const getAllEventsBySport = async (lang, sportId) => {
   try {
     allEvents = await getAllEvents(lang);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
 
   if(sportId) {
@@ -73,7 +73,7 @@ const getEventById = async (lang, eventId) => {
   try {
     allEvents = await getAllEvents(lang);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
   const eventExist = allEvents.filter(event => {
     return event.id === parseInt(eventId);
@@ -103,7 +103,7 @@ const getEventsNames = async (lang, sportId) => {
   try {
     allEvents = await getAllEvents(lang);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
   
   if(sportId) {
